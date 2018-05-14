@@ -82,13 +82,13 @@ with tf.Session() as sess:
             otimizador_gradiente_descendente.run(feed_dict={X: batch[0], Y:batch[1]})
             inicio += batch_size
 
-    ### TESTE DO MODELO ###
-    predicao_modelo = tf.nn.softmax(logits)
-    predicao_correta = tf.equal(tf.argmax(predicao_modelo, 1), tf.argmax(Y, 1))
+        ### TESTE DO MODELO ###
+        predicao_modelo = tf.nn.softmax(logits)
+        predicao_correta = tf.equal(tf.argmax(predicao_modelo, 1), tf.argmax(Y, 1))
 
-    ### CALCULO DA ACURACIA ###
-    perda = funcao_perda.eval(feed_dict={X: vetor_numeros, Y: vetor_classes})
-    acuracia = tf.reduce_mean(tf.cast(predicao_correta, tf.float32))
-    print("Epoca: %d, Perda: %.f" % (epoca+1, perda))
-    print("Acuracia obtida: ", 100*acuracia.eval(feed_dict={X: vetor_numeros, Y: vetor_classes}))
+        ### CALCULO DA ACURACIA ###
+        perda = funcao_perda.eval(feed_dict={X: vetor_numeros, Y: vetor_classes})
+        acuracia = tf.reduce_mean(tf.cast(predicao_correta, tf.float32))
+        print("Epoca: %d, Perda: %.2f" % (epoca+1, perda))
+        print("Acuracia obtida: ", 100*acuracia.eval(feed_dict={X: vetor_numeros, Y: vetor_classes}))
 
